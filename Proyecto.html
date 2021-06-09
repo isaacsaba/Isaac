@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Cadenas Aleatorias</title>
+</head>
+<body>
+    <h1>Generador de cadenas</h1>
+    <div class="card">
+        <div class="card-body">
+            <div class="form-group row">
+                <div class="col-md-1">
+                    <label class="control-label ">Longitud</label>
+                </div>
+                <div class="col-md-2">
+                    <input type="number" name="Loingitud" id="Longitud" class="form-control ">
+                </div>
+                <div class="col-md-1">
+                    <label class="control-label ">Cantidad</label>
+                </div>
+                <div class="col-md-2">
+                    <input type="number" name="Cantidad" id="Cantidad" class="form-control" >
+                </div>
+            </div>
+            <br>
+
+            <div class="col-md-1 offset-md-2">
+                <button class="btn btn-info" onclick="Generador()">
+                    Generar
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script >
+   
+
+    function Generador() {
+        var Longitud = document.getElementById("Longitud").value;
+        var Cantidad = document.getElementById("Cantidad").value;
+        var contador = 0;
+        var x = 36-Longitud;
+        var y = 1;
+        var z = 1;
+
+        for(var n = 36; n>0; n--){
+            y *= n;
+        }
+        for(var r = x; r>0; r--){
+            z *= r;
+        }
+        
+        var MaxPermutaciones = (y/z)+1
+        var Arrayvalidacion = [];
+        for(var i = 0; i< Cantidad; i ++){
+        var Texto = "";
+        var LetrasyNumeros = "abcdefghijklmnopqrstuvwxyz0123456789";
+        contador ++ 
+        if (contador == MaxPermutaciones.toFixed()){
+            Longitud++;
+        }
+            for (var j = 0; j < Longitud; j++)
+            
+             Texto += LetrasyNumeros.charAt(Math.floor( Math.random()*LetrasyNumeros.length)); 
+
+             
+             if(Arrayvalidacion.includes(Texto)){
+                 i--;
+                 contador --;
+             }else{
+                Arrayvalidacion.push(Texto);
+                console.log(Texto);
+             }
+ 
+        }
+
+       
+    }
+
+   
+
+</script>
